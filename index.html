@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Ticket Booking Assistant</title>
+</head>
+<body style="background-color: #2E2F43; font-family: Arial, Helvetica, sans-serif; font-size: large;">
+    <!--Dialogflow Integeration-->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Flight-Project"
+  chat-icon="data:image/png;base64,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"
+  agent-id="e005f77c-7663-4baf-a3ef-d583886f7589"
+  language-code="en"
+></df-messenger>
+<style>
+    df-messenger {
+     --df-messenger-bot-message: #878fac;
+     --df-messenger-button-titlebar-color: #f7cb0a;
+     --df-messenger-chat-background-color: #1a1818d0;
+     --df-messenger-font-color: white;
+     --df-messenger-send-icon: #878fac;
+     --df-messenger-user-message: #479b3d;
+    }
+  </style>
+
+<!--Header/NavBar-->
+<header class="text-gray-600 body-font" style="background-color: #cecece; height: 125px;">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <span class="ml-3 text-xl">Ticket Booking Assistant</span>
+      </a>
+      <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center" style="font-size: larger; cursor: pointer;">
+        <a class="mr-5 hover:text-gray-900">Home</a>
+        <a class="mr-5 hover:text-gray-900">About us</a>
+        <a class="mr-5 hover:text-gray-900">Info</a>
+        <a class="mr-5 hover:text-gray-900">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+<!--1st Section-->
+<div class="text p-3">
+    <nav class="navbar p-2" style="border-radius: 5px; background-color: rgb(29, 34, 49); margin-top: 2rem;">
+        <div class="container-fluid" style="text-align: center; justify-content: center; display: flex; position: relative;">
+            <a class="navbar-brand" href="#">
+                <div style="display: inline-flex; position: relative; justify-content: space-between;">
+                    <img src="data:image/png;base64,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" alt="Logo" width="30" height="24" class="d-inline-block align-text-top" style="border-radius: 75%; height: 50px; width: 50px;">
+                </div>
+            <div style="display: inline-flex; position: relative; justify-content: space-between; text-align: center; align-items: center;">
+                <span style="font-size: 48px; line-height: 1; font-weight: 600; letter-spacing: -0.003em; font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif; text-decoration: underline; color: #cecece">Ticket Booking Assistant</span>
+            </div>
+            </a>
+        </div>
+    </nav>
+
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900" style="font-weight: bold; color: #4ED0B4;">Book your flight ticket in just on finger tips...</h1>
+        <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Just give some info & your booking is done for you.</p>
+      </div>
+      <!--Cards-->
+      <div style="display: flex; justify-content: center;">
+        <!--1st Card-->
+        <div class="card" style="width: 30rem; position: relative; background-color: #495057; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 5rem; border: 2px solid black;">
+            <img src="https://thumbs.dreamstime.com/b/empty-chairs-departure-hall-airport-background-airplane-taking-off-sunset-travel-concept-144046985.jpg" class="card-img-top" alt="AI img">
+            <div class="card-body">
+            <p class="card-text">Get rid of waiting in long queues, Just follow few steps & you are done to your destination.</p>
+            </div>
+        </div>
+      </div>
+
+        <!--2nd-->
+        <div style="display: flex; justify-content: center;">
+        <div class="card" style="width: 30rem; position: relative; background-color: #495057; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 5rem; border: 2px solid black;">
+            <img src="https://i.pinimg.com/236x/5e/9c/68/5e9c683bff280ca19a8b4d406dde1c5a.jpg" class="card-img-top" alt="AI img">
+            <div class="card-body">
+            <p class="card-text">Get detailed flight schedule of Arrivals and Departure.</p>
+            </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center;">
+        <!--3rd-->
+        <div class="card" style="width: 30rem; position: relative; background-color: #495057; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 5rem; border: 2px solid black;">
+            <img src="https://i.pinimg.com/236x/fe/fb/35/fefb35d731b5b4632a8aa07277bc1d10.jpg" class="card-img-top" alt="AI img">
+            <div class="card-body">
+            <p class="card-text">An expereince you would probably never forget.</p>
+            </div>
+        </div>
+      </div>
+
+        <div style="display: flex; justify-content: center;">
+        <!--4th-->
+        <div class="card" style="width: 30rem; position: relative; background-color: #495057; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 5rem; border: 2px solid black;">
+            <img src="https://i.pinimg.com/originals/f3/d0/b4/f3d0b4ebb163f6c40087d12bf49f709f.jpg" class="card-img-top" alt="AI img">
+            <div class="card-body">
+            <p class="card-text">Have a great journey by just finger tips away.</p>
+            </div>
+        </div>
+      </div>
+    
+    <!--Content Main-->
+    <div class="container px-5 py-24 mx-auto flex items-center md:flex-row flex-col" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1OBQH8s8Z7erB8zaMYJKCB_w5edY_EOV41g&usqp=CAU);">
+        <div class="flex flex-col md:pr-10 md:mb-0 mb-6 pr-0 w-full md:w-auto md:text-left text-center">
+          <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1" style="font-size: larger;">TICKET BOOKING ASSISTANT</h2>
+          <h1 class="md:text-3xl text-2xl font-medium title-font text-gray-900" style="color:#EDE4ED">Get your hands on booking your flight by clicking on icon at bottom right</h1>
+        </div>
+        <div class="flex md:ml-auto md:mr-0 mx-auto items-center flex-shrink-0 space-x-4">
+          <button class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 512 512">
+              <path d="M99.617 8.057a50.191 50.191 0 00-38.815-6.713l230.932 230.933 74.846-74.846L99.617 8.057zM32.139 20.116c-6.441 8.563-10.148 19.077-10.148 30.199v411.358c0 11.123 3.708 21.636 10.148 30.199l235.877-235.877L32.139 20.116zM464.261 212.087l-67.266-37.637-81.544 81.544 81.548 81.548 67.273-37.64c16.117-9.03 25.738-25.442 25.738-43.908s-9.621-34.877-25.749-43.907zM291.733 279.711L60.815 510.629c3.786.891 7.639 1.371 11.492 1.371a50.275 50.275 0 0027.31-8.07l266.965-149.372-74.849-74.847z"></path>
+            </svg>
+            <span class="ml-4 flex items-start flex-col leading-none">
+              <span class="text-xs text-gray-600 mb-1">GET IT ON</span>
+              <span class="title-font font-medium">Google Play</span>
+            </span>
+          </button>
+          <button class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 305 305">
+              <path d="M40.74 112.12c-25.79 44.74-9.4 112.65 19.12 153.82C74.09 286.52 88.5 305 108.24 305c.37 0 .74 0 1.13-.02 9.27-.37 15.97-3.23 22.45-5.99 7.27-3.1 14.8-6.3 26.6-6.3 11.22 0 18.39 3.1 25.31 6.1 6.83 2.95 13.87 6 24.26 5.81 22.23-.41 35.88-20.35 47.92-37.94a168.18 168.18 0 0021-43l.09-.28a2.5 2.5 0 00-1.33-3.06l-.18-.08c-3.92-1.6-38.26-16.84-38.62-58.36-.34-33.74 25.76-51.6 31-54.84l.24-.15a2.5 2.5 0 00.7-3.51c-18-26.37-45.62-30.34-56.73-30.82a50.04 50.04 0 00-4.95-.24c-13.06 0-25.56 4.93-35.61 8.9-6.94 2.73-12.93 5.09-17.06 5.09-4.64 0-10.67-2.4-17.65-5.16-9.33-3.7-19.9-7.9-31.1-7.9l-.79.01c-26.03.38-50.62 15.27-64.18 38.86z"></path>
+              <path d="M212.1 0c-15.76.64-34.67 10.35-45.97 23.58-9.6 11.13-19 29.68-16.52 48.38a2.5 2.5 0 002.29 2.17c1.06.08 2.15.12 3.23.12 15.41 0 32.04-8.52 43.4-22.25 11.94-14.5 17.99-33.1 16.16-49.77A2.52 2.52 0 00212.1 0z"></path>
+            </svg>
+            <span class="ml-4 flex items-start flex-col leading-none">
+              <span class="text-xs text-gray-600 mb-1">Download on the</span>
+              <span class="title-font font-medium">App Store</span>
+            </span>
+          </button>
+        </div>
+    </div>
+      
+  </section>
+
+
+<!--2nd Section-->
+<!--Content-->
+<div class="text p-2">
+    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; position: relative; border-radius: 5px; margin-bottom: 2rem; width: 75%; height: 60px ; background-image: url(https://wallpaperaccess.com/full/1385574.jpg); background-color: rgba(0, 0, 0, 0.5);">
+      <p style="font-size: x-large; font-weight: bold; color: #EDE4ED; border-radius: 5px;">Popular AIs</p>
+    </div>
+  </div>
+
+<!--6 Cards-->
+<div style="display: flex; justify-content: space-between;">
+    <!--AI-->
+    <div class="card" style="width: 18rem; position: relative; background-color: #212529; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 2rem;">
+        <img src="https://www.engineersgarage.com/wp-content/uploads/2021/11/TCH36-01-scaled.jpg" class="card-img-top" alt="AI img">
+        <div class="card-body">
+        <p class="card-text">Artificial Intelligence is a field, which combines Computer Science and Robust Datasets, to enable problem-solving.</p>
+        </div>
+    </div>
+
+    <!--Open AI-->
+    <div class="card" style="width: 18rem; position: relative; background-color: #212529; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 2rem;">
+        <img src="data:image/jpeg;base64,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" class="card-img-top" alt="AI img">
+        <div class="card-body">
+        <p class="card-text">OpenAI conducts AI research with the declared intention of promoting and developing a friendly AI.</p>
+        </div>
+    </div>
+
+    <!--Google Text to Speech-->
+    <div class="card" style="width: 18rem; position: relative; background-color: #212529; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 2rem;">
+        <img src="https://projectnaomi.com/plugins/googletts.png" class="card-img-top" alt="AI img">
+        <div class="card-body">
+        <p class="card-text">Google Text-to-Speech powers applications to read aloud the text on the screen with support for many languages</p>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div style="display: flex; justify-content: space-between;">
+    <!--Alexa-->
+    <div class="card" style="width: 18rem; position: relative; background-color: #212529; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 2rem;">
+        <img src="data:image/png;base64,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" class="card-img-top" alt="AI img">
+        <div class="card-body">
+        <p class="card-text">Alexa is Amazon’s cloud-based voice service available on hundreds of millions of devices from Amazon and third-party device manufacturers. With Alexa, you can build natural voice experiences that offer customers a more intuitive way to interact with the technology they use every day.</p>
+        </div>
+    </div>
+
+    <!--Siri-->
+    <div class="card" style="width: 18rem; position: relative; background-color: #212529; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 2rem;">
+        <img src="data:image/jpeg;base64,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" class="card-img-top" alt="AI img">
+        <div class="card-body">
+        <p class="card-text">Siri is a virtual assistant that is part of Apple Inc.'s iOS, iPadOS, watchOS, macOS, tvOS, and audioOS operating systems.</p>
+        </div>
+    </div>
+
+    <!--Google Voice Assistant-->
+    <div class="card" style="width: 18rem; position: relative; background-color: #212529; color: whitesmoke; margin-left: 2rem; margin-right: 2rem; margin-bottom: 2rem;">
+        <img src="data:image/png;base64,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" class="card-img-top" alt="AI img">
+        <div class="card-body">
+        <p class="card-text">Google Assistant is a virtual assistant software application developed by Google that is primarily available on mobile and home automation devices. Based on Artificial Intelligence.</p>
+        </div>
+    </div>
+</div>
+
+<!--Footer-->
+
+<footer class="text-gray-600 body-font" style="background-color: #cecece; margin-bottom: -1rem; margin-left: -1rem; margin-right: -1rem;">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <span class="ml-3 text-xl">Ticket Booking Assistant</span>
+      </a>
+      <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 Ticket Booking Assistant
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <a class="text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+        <a class="ml-3 text-gray-500">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>
