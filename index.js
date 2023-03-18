@@ -58,6 +58,3 @@ app.post("/dialogflow", async (req, res) => {
     intentMap.set('hi', hi); 
     agent.handleRequest(intentMap);
 })
-app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
-});
